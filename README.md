@@ -8,7 +8,7 @@ This "acts_as" extension provides the capabilities a application to allow to gen
 Gemfile:
 gem 'acts_as_dasherize_vanity'
 
-And then execute:
+And execute:
 
     $ bundle
 
@@ -20,13 +20,12 @@ Or install it yourself as:
 
 ### Models:
 
-If need to apply in User model on default field than need to add 2 field in users table
-default field: 
+To apply dasherize vanity in  User model add below two field on users table
 
 **name**
 **dasherize_vanity**
 
-and add this line in model(user.rb)
+and add this line in user model
 
 acts_as_dasherize_vanity 
 
@@ -38,16 +37,16 @@ class User < ActiveRecord::Base
 
 end
 
-Than it will work
+That's it.
 
-If have product model and need to apply in Product model on custom field than need to add 2 field custom field in products table
+Similarly for custom fields:
 
-suppose you have filed name in product model
+suppose you have custom column called name in product model. Then create these two fields in products table
 
 **product_name**
 **product_dasherize_vanity_url**
 
-than add this line in model(product.rb)  
+and add this line in your product model  
 
 acts_as_dasherize_vanity({ initial_column: "product_name", dasherize_vanity_column: "product_dasherize_vanity_url" })   
 
@@ -58,8 +57,6 @@ class Product < ActiveRecord::Base
      acts_as_dasherize_vanity({ initial_column: "product_name", dasherize_vanity_column:"product_dasherize_vanity_url" })
 
 end
-
-Than it will work.
 
 ### Url in view pages
 for user
@@ -85,7 +82,7 @@ for product
        if params[:id].is_number?
          @user = User.where("id = ?",params[:id]).first 
        else
-         @user = User.where("dasherize_vanity= ?",params[:id],params[:id]).first 
+         @user = User.where("dasherize_vanity= ?",params[:id]).first 
        end
      end 
 
